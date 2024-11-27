@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React, { useState, useCallback, useEffect } from "react";
+import { Text, View, StyleSheet, ActivityIndicator } from "react-native";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -11,9 +11,9 @@ import InputExpense from "./screens/InputExpense";
 import AppNavigator from "./navigations/AppNavigator";
 
 export default function App() {
-  const [fontsLoaded, setFontsLoaded] = React.useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function loadFonts() {
       await SplashScreen.preventAutoHideAsync();
       await Font.loadAsync({
@@ -35,7 +35,9 @@ export default function App() {
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
-    return null;
+    <View style={styles.loadingContainer}>
+      <ActivityIndicator size="large" color={COLOR.blueSecondary} />
+    </View>;
   }
 
   return (
@@ -48,13 +50,9 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  loadingContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  text: {
-    fontSize: 20,
-    marginBottom: 10,
   },
 });
