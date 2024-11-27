@@ -30,4 +30,5 @@ export const COLOR = {
   red: "#F95B51",
   textPrimary: "#222222",
   textSecondary: "#666666",
+  screenColor: "#F5F5F5",
 };

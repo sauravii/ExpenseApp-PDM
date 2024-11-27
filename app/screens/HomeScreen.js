@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { FONTS, FONTSIZE } from "../constants";
+import { COLOR, FONTS, FONTSIZE } from "../constants";
 
 const HomeScreen = () => {
   return (

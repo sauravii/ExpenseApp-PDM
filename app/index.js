@@ -2,11 +2,13 @@ import React, { useCallback } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { FONTS } from "../app/constants";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { COLOR, FONTS } from "../app/constants";
 import HomeScreen from "./screens/HomeScreen";
 import Onboarding from "./screens/Onboarding";
 import TransactionHistory from "./screens/TransactionHistory";
 import InputExpense from "./screens/InputExpense";
+import AppNavigator from "./navigations/AppNavigator";
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = React.useState(false);
@@ -37,9 +39,11 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container} onLayout={onLayoutRootView}>
-      <HomeScreen />
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+        <AppNavigator />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
